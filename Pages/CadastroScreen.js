@@ -1,21 +1,20 @@
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  StyleSheet, 
-  KeyboardAvoidingView, 
-  Platform, 
-  Image, 
-  Alert, 
-  TouchableWithoutFeedback, 
-  Keyboard, 
-  ScrollView,
-  ActivityIndicator
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform, Image,  Alert, TouchableWithoutFeedback, Keyboard, ScrollView, ActivityIndicator
 } from 'react-native';
 import { useState } from 'react';
+import { initializeApp } from "firebase/app";
 
 const CadastroScreen = ({ navigation }) => {
+  const firebaseConfig = {
+    apiKey: "AIzaSyAV50muO4U5cInE20G_K003oQa6chnPtRw",
+    authDomain: "ativa-vida.firebaseapp.com",
+    projectId: "ativa-vida",
+    storageBucket: "ativa-vida.firebasestorage.app",
+    messagingSenderId: "282400954907",
+    appId: "1:282400954907:web:1e9341548858db0fe736be"
+  };
+
+  const app = initializeApp(firebaseConfig);
+
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');

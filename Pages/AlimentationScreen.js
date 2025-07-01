@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity, TextInput, Text, ScrollView, FlatList, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { initializeApp } from "firebase/app";
+
 
 const initialFoods = [
   { id: '1', name: 'Maçã', calories: 52, quantity: '100g', category: 'frutas' },
@@ -26,6 +28,18 @@ const loadFoodsData = async () => {
 };
 
 const AlimentationScreen = ({ navigation }) => {
+  
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  
   const [foods, setFoods] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -36,7 +50,7 @@ const AlimentationScreen = ({ navigation }) => {
     category: 'outros'
   });
   const [showAddForm, setShowAddForm] = useState(false);
-
+  
   useEffect(() => {
     const initializeData = async () => {
       const { foods } = await loadFoodsData();
